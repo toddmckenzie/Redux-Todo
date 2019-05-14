@@ -35,7 +35,7 @@ toggle = (id) => {
       <div>
         {this.props.todos.map(todo =>
           <div onClick={() => this.toggle(todo.id) } key={Math.random()}>
-            <Todo todo={todo.todo}  key={Math.random()}/>
+            <Todo todo={todo.todo} completed={todo.completed}  key={Math.random()}/>
           </div>
         )}
         <form onSubmit={ this.addTodo } >
@@ -46,13 +46,27 @@ toggle = (id) => {
   }
 
 }
-
+/*
 const mapStateToProps = state => {
   console.log(state)
   return {
     todos: state.todos
   }
 }
+*/
+function mapStateToProps(state) {
+  return { todos: state.todos}
+}
 
 
 export default connect(mapStateToProps, { addTodo, toggle_completed })(Todos);
+
+/*
+return {
+  todos: {
+    todo: state.todo,
+    completed: state.completed,
+    id: state.id
+  }
+}
+*/

@@ -19,26 +19,33 @@ const initialState =  {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
-      return
-        let obj = { ...state };
-        Object.assign({}, obj, { todo: action.payload, completed: false, id: Date.now() })
+      return { ...state,
+     todos: [
+            ...state.todos,
+          {
+            todo: action.payload,
+            completed: false,
+            id: Date.now()
+          }]
+       }
 
     case TOGGLE_COMPLETED:
-      return
-        state.todos.map(todo => {
-          if (todo.id === action.payload) {
+      return {
+        todos: state.todos.map(todo => {
+          if (todo.id === action.payload){
             return {
-              ...state,
+              ...todo,
               completed: !todo.completed
             }
           }
           return todo
         })
-
+      }
       default:
         return state
-      }
+
     }
+  }
 
 
 export default reducer;
