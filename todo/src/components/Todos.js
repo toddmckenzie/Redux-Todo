@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo, toggle_completed } from '../actions';
+import { addTodo, toggle_completed, delete_todo } from '../actions';
 import Todo from './Todo';
 
 class Todos extends React.Component {
@@ -13,7 +13,15 @@ class Todos extends React.Component {
 }
 addTodo = (e) => {
   e.preventDefault();
-  this.props.addTodo(this.state.todo)
+  this.props.addTodo(this.state.todo);
+  this.setState({
+    todo: ''
+  })
+}
+
+delete_todo = (id) => {
+  console.log('hi')
+  this.props.delete_todo(id)
 }
 
 handleChanges= (e) => {
@@ -29,13 +37,12 @@ toggle = (id) => {
 
 
   render () {
-    //this.props.todos.map(todo =>
-    //  console.log(todo.completed))
+
     return (
       <div>
         {this.props.todos.map(todo =>
-          <div onClick={() => this.toggle(todo.id) } key={Math.random()}>
-            <Todo todo={todo.todo} completed={todo.completed}  key={Math.random()}/>
+          <div key={Math.random()}>
+            <Todo todo={todo.todo} completed={todo.completed} toggle={this.toggle} id={todo.id} deleteTodo={this.delete_todo} key={Math.random()}/>
           </div>
         )}
         <form onSubmit={ this.addTodo } >
@@ -46,27 +53,10 @@ toggle = (id) => {
   }
 
 }
-/*
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    todos: state.todos
-  }
-}
-*/
+
 function mapStateToProps(state) {
   return { todos: state.todos}
 }
 
 
-export default connect(mapStateToProps, { addTodo, toggle_completed })(Todos);
-
-/*
-return {
-  todos: {
-    todo: state.todo,
-    completed: state.completed,
-    id: state.id
-  }
-}
-*/
+export default connect(mapStateToProps, { addTodo, toggle_completed, delete_todo })(Todos);

@@ -1,7 +1,16 @@
 .non {
-  text-decoration: none
+  text-decoration: none;
+  margin-right: 50px;
 }
 
 .completedTask {
   text-decoration: line-through;
+  margin-right: 50px;
+}
+
+
+.flexes {
+  display: flex;
+  text-align: center;
+  margin-left: 30%;
 }

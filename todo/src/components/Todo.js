@@ -7,9 +7,11 @@ const Todo = (props) => {
   if (props.completed) {
     classStyle = 'completedTask';
   }
+
   return (
-    <div className={classStyle}>
-      <p>{props.todo}</p>
+    <div className="flexes">
+      <p className={classStyle} onClick={() => props.toggle(props.id)}>{props.todo}</p>
+      <button onClick={() => props.deleteTodo(props.id)}>Delete Todo </button>
     </div>
   )
 }
