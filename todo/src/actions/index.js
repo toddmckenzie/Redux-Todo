@@ -5,6 +5,7 @@ export const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED';
 
 
 export const addTodo = (newTodo) => {
+  console.log(newTodo)
   return {
     type: ADD_TODO,
     payload: newTodo
@@ -12,10 +13,11 @@ export const addTodo = (newTodo) => {
 }
 
 
-export const toggle_completed = (todo) => {
+export const toggle_completed = (id) => {
+  console.log(id)
   return {
     type: TOGGLE_COMPLETED,
-    payload: todo.id
+    payload: id
   }
 }
 

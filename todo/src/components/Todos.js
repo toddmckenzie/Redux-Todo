@@ -23,16 +23,22 @@ handleChanges= (e) => {
   })
 }
 
+toggle = (id) => {
+  this.props.toggle_completed(id)
+}
+
 
   render () {
-    this.props.todos.map(todo =>
-      console.log(todo.todo))
+    //this.props.todos.map(todo =>
+    //  console.log(todo.completed))
     return (
       <div>
         {this.props.todos.map(todo =>
-          <Todo todo={todo.todo} toggle_completed={this.props.toggle_completed} key={Math.random()}/>
+          <div onClick={() => this.toggle(todo.id) } key={Math.random()}>
+            <Todo todo={todo.todo}  key={Math.random()}/>
+          </div>
         )}
-        <form onSubmit={() =>  this.addTodo() } >
+        <form onSubmit={ this.addTodo } >
           <input value={this.state.todo} name='todo' placeholder='Add Todo...' onChange={this.handleChanges} />
         </form>
       </div>

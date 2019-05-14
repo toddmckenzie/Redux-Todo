@@ -10,13 +10,13 @@ const initialState =  {
     id: 6353737373
   },{
     todo: 'sleep',
-    completed: false,
+    completed: true,
     id: 98232975302
    }]
 }
 
 
-export const reducers = (state = initialState, action) => {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
       return
@@ -25,13 +25,20 @@ export const reducers = (state = initialState, action) => {
 
     case TOGGLE_COMPLETED:
       return
-        state.todos.map((todo => {
-          if (todo.id === todo.payload) {
-            Object.assign({},todo,{ completed: !todo.completed})
+        state.todos.map(todo => {
+          if (todo.id === action.payload) {
+            return {
+              ...state,
+              completed: !todo.completed
+            }
           }
+          return todo
+        })
 
-      }))
       default:
         return state
       }
     }
+
+
+export default reducer;
